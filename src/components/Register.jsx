@@ -10,7 +10,7 @@ import { useRef, useState } from 'react';
 import { USER_REGEX, PWD_REGEX, REGISTER_URL } from '../utils/variables';
 import axios from '../api/axios';
 
-export default function Register() {
+export const Register = () => {
   const userRef = useRef();
   const errRef = useRef();
 
@@ -243,4 +243,4 @@ export default function Register() {
       )}
     </>
   );
-}
+};
