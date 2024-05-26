@@ -9,6 +9,7 @@ import { Home } from './components/Home';
 import { Admin } from './components/Admin';
 import { Editor } from './components/Editor';
 import { Lounge } from './components/Lounge';
+import { PersistLogin } from './components/PersistLogin';
 
 function App() {
   return (
@@ -20,20 +21,22 @@ function App() {
       <Route path="unauthorizaed" element={<Unauthorized />} />
 
       {/* we want to protect this routes */}
-      <Route element={<RequireAuth allowedRoles={[2001]} />}>
-        <Route path="/" element={<Home />} />
-      </Route>
+      <Route element={<PersistLogin />}>
+        <Route element={<RequireAuth allowedRoles={[2001]} />}>
+          <Route path="/" element={<Home />} />
+        </Route>
 
-      <Route element={<RequireAuth allowedRoles={[1984]} />}>
-        <Route path="editor" element={<Editor />} />
-      </Route>
+        <Route element={<RequireAuth allowedRoles={[1984]} />}>
+          <Route path="editor" element={<Editor />} />
+        </Route>
 
-      <Route element={<RequireAuth allowedRoles={[5150]} />}>
-        <Route path="admin" element={<Admin />} />
-      </Route>
+        <Route element={<RequireAuth allowedRoles={[5150]} />}>
+          <Route path="admin" element={<Admin />} />
+        </Route>
 
-      <Route element={<RequireAuth allowedRoles={[1984, 5150]} />}>
-        <Route path="lounge" element={<Lounge />} />
+        <Route element={<RequireAuth allowedRoles={[1984, 5150]} />}>
+          <Route path="lounge" element={<Lounge />} />
+        </Route>
       </Route>
     </Routes>
   );
